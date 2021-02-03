@@ -61,6 +61,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+    height: auto;
 }
 .footer {
   position: absolute;
@@ -68,4 +69,57 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+
+
+
+
+.product-list {
+    width: 98%;
+    height: 100vh;
+}
+
+.product-item {
+    width: 98%;
+    height: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 7px;
+    border: 2px solid grey;
+    
+}
+.product-item-img {
+    flex: 1 1 20%;
+    margin-right: 5px;
+    height: auto;
+}
+.product-item-defenition {
+    height: auto;
+    
+    flex: 1 1 50%;
+
+}
+.product-item-defenition-name {
+
+    display: block;
+    height: 40%;
+    text-align: center;
+    
+    width: 98%;
+}
+.product-item-defenition-def {
+    display: block;
+    width: 98%;
+    text-align: justify;
+    height: 55%;
+}
+.product-item-price {
+    flex: 1 1 10%;
+    height: auto;
+    text-align: center;
+}
+.product-item-buttons {
+    flex: 1 1 15%;
 }

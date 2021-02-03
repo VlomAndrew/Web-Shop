@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Buy"] = "Buy";
+}
+
+Вы хотите купить товар @ViewBag.Item.Name
+Подтвердите!
+
+<form asp-action="DealayPage" method="post">
+    <input type="submit" value="Оплатить"/>
+</form>

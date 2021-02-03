@@ -5,10 +5,31 @@
 }
 
 <a asp-action="Create">Добавить пользователя</a>
-<table class="table">
-    <tr><td>Название</td><td>Цена</td><td>Количество</td></tr>
+<div class="product-list">
+    
     @foreach (var item in ViewBag.Goods)
     {
-        <tr><td>@item.Name</td><td>@item.Price</td><td>@item.Count</td></tr>
+       
+        <div class="product-item">
+            <div class="product-item-img" style="background-image: url(/Img/mystic-nature.jpg)">
+
+            </div>
+            <div class="product-item-defenition">
+                <div class="product-item-defenition-name">@item.Name</div>
+                <div class="product-item-defenition-def">Описание</div>
+            </div>
+            <div class="product-item-price">
+                <p>@item.Price руб</p>
+                кол-во: @item.Count </div>
+            <div class="product-item-buttons">
+                <form asp-action="Buy" method="get" asp-route-id="@item.Id">
+                    <div class="form-group">
+                        <input type="submit" value="Купить" />
+                    </div>
+                </form>
+            </div>
+        </div>
+         
+        
     }
-</table>
+</div>

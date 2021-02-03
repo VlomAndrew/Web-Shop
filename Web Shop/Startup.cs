@@ -28,7 +28,7 @@ namespace Web_Shop
         {
             string connecting = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<GoodsContext>(options => options.UseSqlServer(connecting));
-            services.AddTransient<IGoodsContext, GoodsContext>();
+            //services.AddTransient<IGoodsContext, GoodsContext>();
             services.AddMvc();
             
         }

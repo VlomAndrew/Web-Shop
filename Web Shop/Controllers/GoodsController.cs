@@ -12,19 +12,24 @@ namespace Web_Shop.Controllers
     {
         private GoodsContext db;
 
-        public GoodsController(IGoodsContext context)
+        public GoodsController(GoodsContext context)
         {
-            db = (GoodsContext) context;
+            db = context;
         }
+        [HttpGet]
         public IActionResult Index()
         {
             ViewBag.Goods = db.Goods.ToList();
             return View(ViewBag);
         }
+
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> Create(Item item)
@@ -34,5 +39,31 @@ namespace Web_Shop.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult Buy(int? id)
+        {
+            if (id != null)
+            {
+
+                var item = db.Goods.FirstOrDefault(c => c.Id == id);
+                ViewBag.Item = item;
+                return View(ViewBag);
+            }
+
+            return NotFound(404);
+        }
+
+        [HttpPost]
+        public IActionResult Buy()
+        {
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpPost]
+        public IActionResult DealayPage()
+        {
+            return View();
+        }
     }
 }
