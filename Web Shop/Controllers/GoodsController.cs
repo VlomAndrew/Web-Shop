@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Web_Shop.Extentions;
 using Web_Shop.Models;
 
 namespace Web_Shop.Controllers
@@ -11,11 +12,25 @@ namespace Web_Shop.Controllers
     public class GoodsController : Controller
     {
         private GoodsContext db;
+        
 
         public GoodsController(GoodsContext context)
         {
             db = context;
+            
         }
+
+        public ShopCart GetCart()
+        {
+            ShopCart cart = (ShopCart)HttpContext.Items["cart"];
+            if (cart == null)
+            {
+                cart = new ShopCart();
+                HttpContext.Items["cart"] = cart;
+            }
+            return cart;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -63,6 +78,28 @@ namespace Web_Shop.Controllers
         [HttpPost]
         public IActionResult DealayPage()
         {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddToCart(int? id)
+        {
+            var item = db.Goods.FirstOrDefault(i => i.Id == id);
+            if (item != null)
+            {
+                ItemToBuy prod = new ItemToBuy{Item = item,Quantity = 1};
+                var cart = GetCart();
+                    cart.Add(prod);
+                    HttpContext.Items["cart"] = cart;
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult CartIndex()
+        {
+            var items = GetCart().Items;
+            ViewBag.Items = items;
             return View();
         }
     }

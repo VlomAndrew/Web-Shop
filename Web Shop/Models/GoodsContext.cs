@@ -7,6 +7,7 @@ namespace Web_Shop.Models
     {
         public DbSet<Item> Goods { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
         public GoodsContext(DbContextOptions<GoodsContext> options)
             : base(options)
         {

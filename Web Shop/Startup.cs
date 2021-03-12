@@ -30,11 +30,13 @@ namespace Web_Shop
             services.AddDbContext<GoodsContext>(options => options.UseSqlServer(connecting));
             //services.AddTransient<IGoodsContext, GoodsContext>();
             services.AddMvc();
-            
+            services.AddSession();
+
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            env.EnvironmentName = "Production";
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -47,7 +49,7 @@ namespace Web_Shop
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             //app.UseAuthorization();

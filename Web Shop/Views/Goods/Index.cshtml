@@ -4,27 +4,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<a asp-action="Create">Добавить пользователя</a>
+<a asp-action="Create">Добавить новый товар (для админов)</a>
 <div class="product-list">
     
     @foreach (var item in ViewBag.Goods)
     {
        
         <div class="product-item">
-            <div class="product-item-img" style="background-image: url(/Img/mystic-nature.jpg)">
+            <div class="product-item-img" style="background-image: url(/Img/@item.ImagePath)">
 
             </div>
             <div class="product-item-defenition">
+                <input type="hidden" id="GoodsId" value="@item.Id"/>
                 <div class="product-item-defenition-name">@item.Name</div>
-                <div class="product-item-defenition-def">Описание</div>
+                <div class="product-item-defenition-def">@item.Description</div>
             </div>
             <div class="product-item-price">
                 <p>@item.Price руб</p>
                 кол-во: @item.Count </div>
+            
             <div class="product-item-buttons">
                 <form asp-action="Buy" method="get" asp-route-id="@item.Id">
                     <div class="form-group">
                         <input type="submit" value="Купить" />
+                    </div>
+                </form>
+                <form id="" asp-action="AddToCart" method="get" asp-route-id="@item.Id">
+                    <div class="form-group">
+                        <input type="submit" value="В Корзину"/>
                     </div>
                 </form>
             </div>

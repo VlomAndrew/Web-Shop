@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in ViewBag.Items)
+{
+    <p>@item.Item.Name             @item.Quantity</p>
+}
+
+
+<h1>КОРЗИНА НЕ РАБОТАЕТ</h1>
+<form asp-controller="Goods" method="post" asp-action="DealayPage">
+    <input type="submit" value="Якобы купить" />
+
+</form>
